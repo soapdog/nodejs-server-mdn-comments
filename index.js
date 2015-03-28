@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var pg = require('pg');
 var cool = require('cool-ascii-faces');
 var db = require('pg-db')();
 
