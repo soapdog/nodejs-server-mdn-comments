@@ -15,7 +15,7 @@ app.get('/comments', function (request, response) {
     console.log("looking for url:", url);
 
 
-    db.query("SELECT * FROM comments WHERE url = :url AND anchor = :url",
+    db.query("SELECT * FROM comments WHERE url = :url AND anchor = :anchor",
         {url: url, anchor:anchor},
         function(err, row) {
            response.send(JSON.stringify(row));
