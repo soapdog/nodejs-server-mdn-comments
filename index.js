@@ -8,24 +8,18 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.get('/comments', function (request, response) {
-    //var anchor = request.query.anchor;
-    //var url = request.query.url;
-    //
-    //console.log("looking for anchor:", anchor);
-    //
-    //db.query("SELECT * FROM comments WHERE url = :url AND anchor = :url",
-    //    url, anchor,
-    //    function(err, row) {
-    //       response.send(JSON.stringify(row));
-    //    }
-    //)
+    var anchor = request.query.anchor;
+    var url = request.query.url;
 
-    db.query("SELECT * FROM comments",
+    console.log("looking for anchor:", anchor);
+
+    db.query("SELECT * FROM comments WHERE url = :url AND anchor = :url",
+        {url: url, anchor:anchor},
         function(err, row) {
            response.send(JSON.stringify(row));
         }
-    )
-
+    );
+    
 
 });
 
