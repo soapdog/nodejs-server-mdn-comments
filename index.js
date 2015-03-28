@@ -28,8 +28,12 @@ app.get('/comments', function (request, response) {
 });
 
 app.post("/comments", function(request, response){
-    console.log(request.body);
-    response.send("done");
+    db.query("INSERT INTO comments(id, anchor, url, comment) VALUES(DEFAULT, :anchor, :url, :comment)",
+        request.body,
+        function(err, row) {
+            response.send(JSON.stringify(row));
+        }
+    );
 });
 
 
