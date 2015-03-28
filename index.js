@@ -34,9 +34,10 @@ app.post("/comments", function(request, response){
             console.log("err", err);
             console.log("row", row);
             if (err) {
-                response.send(JSON.stringify(err));
+
+                response.send(500, {status: "fail", err: err});
             } else {
-                response.send(JSON.stringify(row));
+                response.send({status: "ok", rows: row});
             }
         }
     );
