@@ -25,6 +25,11 @@ app.get('/comments', function (request, response) {
 
 });
 
+app.post("/comments", function(request, response){
+    console.log(request.body);
+
+});
+
 
 
 app.get('/', function(request, response) {
