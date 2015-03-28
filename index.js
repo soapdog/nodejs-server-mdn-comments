@@ -31,7 +31,11 @@ app.post("/comments", function(request, response){
     db.query("INSERT INTO comments(id, anchor, url, comment) VALUES(DEFAULT, :anchor, :url, :comment)",
         request.body,
         function(err, row) {
-            response.send(JSON.stringify(row));
+            if (err) {
+                response.send(JSON.stringify(err));
+            } else {
+                response.send(JSON.stringify(row));
+            }
         }
     );
 });
