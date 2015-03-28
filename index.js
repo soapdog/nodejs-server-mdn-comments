@@ -2,22 +2,23 @@ var express = require('express');
 var app = express();
 var pg = require('pg');
 var cool = require('cool-ascii-faces');
+var db = require('pg-db')();
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 
 app.get('/comments', function (request, response) {
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        client.query('SELECT * FROM test_table', function(err, result) {
-            done();
-            if (err)
-            { console.error(err); response.send("Error " + err); }
-            else
-            { response.send(result.rows); }
-        });
-    });
-})
+    var anchor = request.query.anchor;
+    var url = request.query.url;
+
+    db.query("SELECT * FROM comments WHERE url = :url AND anchor = :url",
+        url, anchor,
+        function(err, row) {
+           response.send(JSON.stringify(row));
+        }
+    )
+});
 
 
 
