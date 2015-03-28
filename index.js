@@ -28,7 +28,7 @@ app.get('/comments', function (request, response) {
 });
 
 app.post("/comments", function(request, response){
-    db.query("INSERT INTO comments(id, anchor, url, comment) VALUES(DEFAULT, :anchor, :url, :comment)",
+    db.update("INSERT INTO comments(id, anchor, url, comment) VALUES(DEFAULT, :anchor, :url, :comment)",
         request.body,
         function(err, row) {
             console.log("err", err);
