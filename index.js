@@ -31,6 +31,8 @@ app.post("/comments", function(request, response){
     db.query("INSERT INTO comments(id, anchor, url, comment) VALUES(DEFAULT, :anchor, :url, :comment)",
         request.body,
         function(err, row) {
+            console.log("err", err);
+            console.log("row", row);
             if (err) {
                 response.send(JSON.stringify(err));
             } else {
